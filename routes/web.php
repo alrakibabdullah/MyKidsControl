@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\Admin\ChildController;
 use App\Http\Controllers\Admin\CountryController;
 use App\Http\Controllers\Admin\WebsiteController;
 use App\Http\Controllers\Admin\CustomerController;
@@ -43,6 +44,12 @@ Route::prefix('admin')->group(function (){
         Route::resource('customer', CustomerController::class);
         Route::get('/customer/active/{id}', [CustomerController::class, 'active'])->name('active-customer');
         Route::get('/customer/inactive/{id}', [CustomerController::class, 'inactive'])->name('inactive-customer');
+        //child
+        Route::resource('child', ChildController::class);
+        Route::post('parent-profile', [ChildController::class, 'parent'])->name('parent-profile');
+        Route::get('children-list/{id}', [ChildController::class, 'children_list'])->name('children-list');
+        Route::post('child-profile', [ChildController::class, 'child'])->name('child-profile');
+        
         //website setting
         Route::get('/site-setting', [SettingController::class, 'setting'])->name('site-setting');
         Route::post('/save-logo', [SettingController::class, 'save_logo'])->name('save-logo');

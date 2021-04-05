@@ -26,90 +26,9 @@
 <section class="content">
     <div class="container-fluid">
         <div class="row">
-            <div class="col-md-6">
-                @if ($errors->any())
-                <div class="alert alert-danger">
-                    <ul>
-                        @foreach ($errors->all() as $error)
-                            <li>{{ $error }}</li>
-                        @endforeach
-                    </ul>
-                </div>
-            @endif
-              
-            <!-- Horizontal Form -->
-                <div class="card card-info customer-form">
-                  <div class="card-header">
-                    <h3 class="card-title">Add Customer</h3>
-                  </div>
-                  <!-- /.card-header -->
-                  <!-- form start -->
-                  <form class="form-horizontal" action="{{route('customer.store')}}" method="post" enctype="multipart/form-data">
-                      @csrf
-                    <div class="card-body">
-                      <div class="form-group row">
-                        <label for="inputEmail3" class="col-sm-3 col-form-label">Name <span style="color: red">*</span> </label>
-                        <div class="col-sm-9">
-                          <input type="text" class="form-control" name="name" placeholder="First Name">
-                        </div>
-                      </div>		                  
-                      		                  	                  
-                      <div class="form-group row">
-                        <label for="inputEmail3" class="col-sm-3 col-form-label">Phone Number<span style="color: red">*</span></label>
-                        <div class="col-sm-9">
-                          <input type="number" class="form-control" name="phone" placeholder="Phone Number">				
-                        </div>
-                      </div>		                  
-
-                      <div class="form-group row">
-                        <label for="inputEmail3" class="col-sm-3 col-form-label">Email</label>
-                        <div class="col-sm-9">
-                          <input type="email" id="email" class="form-control" name="email" placeholder="Email">				
-                        </div>
-                        <div style="margin-left: 200px">
-                            <p id="uname_response" ></p>
-                        </div>
-                        
-                      </div>
-                                                
-
-                      <div class="form-group row">
-                        <label for="inputEmail3" class="col-sm-3 col-form-label">Address</label>
-                        <div class="col-sm-9">
-                          <input type="text" class="form-control" name="address" placeholder="Address">				
-                        </div>
-                      </div>		                  
-
-                      <div class="form-group row">
-                        <label for="inputEmail3" class="col-sm-3 col-form-label">Image</label>
-                        <div class="col-sm-9">
-                          <input type="file" class="form-control" name="image" placeholder="Image">				
-                        </div>
-                      </div>		                  		                  
-                      <div class="form-group row">
-                        <label for="inputPassword3" class="col-sm-3 col-form-label">Status</label>
-                        <div class="col-sm-9">
-                          <select name="status" id="" class="form-control">
-                              <option value="" selected="" disabled="">---select status---</option>
-                              <option value="1">Active</option>
-                              <option value="0 ">Inactive</option>
-                          </select>
-                        </div>
-                      </div>
-                    </div>
-                    <!-- /.card-body -->
-                    <div class="card-footer">
-                      <button type="submit" class="btn btn-info">Save</button>
-                      <button type="reset" class="btn btn-default">Cancel</button>
-                    </div>
-                    <!-- /.card-footer -->
-                  </form>
-            </div>
-            <!-- /.card -->
-
             </div>
             <!-- right column -->
-            <div class="col-md-6">
+            <div class="col-md-12">
                 <!-- general form elements disabled -->
                 <div class="card card-warning">
                     <div class="card">
@@ -137,27 +56,28 @@
                                     <td>{{$item->phone}}</td>
                                     <td>@php
                                         if($item->status == 1){
-                                        echo  "<div class='badge badge-success badge-shadow'>Active</div>";
+                                        echo  "<div class='badge badge-success badge-shadow'>Unblock</div>";
                                         }else{
-                                        echo  "<div class='badge badge-danger badge-shadow'>Inactive</div>";
+                                        echo  "<div class='badge badge-danger badge-shadow'>Block</div>";
                                         }
                                         @endphp
                                     </td>
                                     <td>
                                         <?php  if($item->status == 1){ ?>
                                             <a href="{{route('inactive-customer',[$item->id])}}"
-                                               class="btn btn-success" title="Inactive"><i
+                                               class="btn btn-success btn-sm" title="Inactive"><i
                                                     class="fa fa-arrow-down"></i></a>
                                         <?php }else{ ?>
                                             <a href="{{route('active-customer',[$item->id])}}"
-                                               class="btn btn-warning" title="Active"><i
+                                               class="btn btn-warning btn-sm" title="Active"><i
                                                     class="fa fa-arrow-up"></i></a>
                                         <?php } ?>
 
 
-                                        <button data-id="{{$item->id}}" class="btn btn-primary edit" >
-                                            <span class="fa fa-edit"></span>
-                                        </button>
+                                        <a href="{{route('customer.edit',$item->id)}}" class="btn btn-info btn-sm"><i class="fa fa-edit"></i></a>
+                                        <a href="{{route('children-list',$item->id)}}" class="btn btn-info btn-sm"><i class="fas fa-user-alt"></i></a>
+                                        {{-- <a href="#"  style="display: inline;" class="btn btn-success btn-sm" onclick="ViewParentProfile({{$item->id}})"  data-toggle="modal"
+                                            data-target=".bd-example-modal-lg" title="Children List"><i class="fas fa-user-alt"></i></a> --}}
                                     </td>
                                 </tr>
                                 @php $i++; @endphp
@@ -176,43 +96,30 @@
 		</div>
 	</div>
 </section>
+ <!-- Large modal -->
+ <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
+ aria-hidden="true">
+<div class="modal-dialog modal-lg">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title" id="myLargeModalLabel">Parents Profile
+             {{-- <button onclick="PrintJobCard()" class="btn btn-primary"> Print </button></h5> --}}
+            </h5>
+            <div class="text-left">
+                <button type="button" class="close text-right" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+             </div>
+        </div>
+        <div class="modal-body" id="view-model">
+            Content goes here....
+        </div>
+    </div>
+</div>
+</div>
 @endsection
 @section('script')
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-<script>
-    $(document).ready(function(){
-           $.ajaxSetup({
-               headers: {
-                   'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-               }
-           });
-           token = $( "input[value='_token']" ).val();
-   
-   
-           $('.edit').on('click',function(){
-               var id = $(this).attr("data-id");
-               data = {
-                   "_token": token,
-                   "id":id
-               };
-               $.ajax({
-                   url: "customer/"+id+'/edit',
-                   type: "get",
-                   data:data,
-                   success: function (response) {
-                       // console.log(response);
-                       $('.customer-form').html(response);
-                   },
-                   error: function(jqXHR, textStatus, errorThrown) {
-                       console.log(textStatus, errorThrown);
-                   }
-               });
-           });
-           
-      
-       
-   
-   });
-   </script>
+
 
 @endsection

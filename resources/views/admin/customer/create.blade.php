@@ -23,51 +23,48 @@
         </div><!-- /.container-fluid -->
     </section>
 
- <!-- Main content -->
- <section class="content">
-  <div class="container-fluid">
-      <div class="row">
-          <!-- left column -->
-          <div class="col-md-12">
-              <!-- general form elements -->
-              <div class="card card-primary">
-                  @if ($errors->any())
-                      <div class="alert alert-danger">
-                          <ul>
-                              @foreach ($errors->all() as $error)
-                                  <li>{{ $error }}</li>
-                              @endforeach
-                          </ul>
-                      </div>
-                  @endif
-                  <div class="card-header" style="text-align: right">
-                      <h3 class="card-title">Update Customer</h3>
-                      <a href="{{route('customer.index')}}" class="btn btn-success"> + Add New </a>
-                    </div>
+<section class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-10">
+                @if ($errors->any())
+                <div class="alert alert-danger">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
+              
+            <!-- Horizontal Form -->
+                <div class="card card-info customer-form">
+                  <div class="card-header">
+                    <h3 class="card-title">Add Customer</h3>
+                  </div>
                   <!-- /.card-header -->
                   <!-- form start -->
-                  <form class="form-horizontal" action="{{route('customer.update',$data->id)}}" method="post" enctype="multipart/form-data">
+                  <form class="form-horizontal" action="{{route('customer.store')}}" method="post" enctype="multipart/form-data">
                       @csrf
-                      @method('patch')
                     <div class="card-body">
                       <div class="form-group row">
-                        <label for="inputEmail3" class="col-sm-3 col-form-label">Name</label>
+                        <label for="inputEmail3" class="col-sm-3 col-form-label">Name <span style="color: red">*</span> </label>
                         <div class="col-sm-9">
-                          <input type="text" class="form-control" value="{{$data->name}}" name="name" placeholder="First Name">
+                          <input type="text" class="form-control" name="name" placeholder="First Name">
                         </div>
                       </div>		                  
-                                                                      
+                      		                  	                  
                       <div class="form-group row">
-                        <label for="inputEmail3" class="col-sm-3 col-form-label">Phone Number</label>
+                        <label for="inputEmail3" class="col-sm-3 col-form-label">Phone Number<span style="color: red">*</span></label>
                         <div class="col-sm-9">
-                          <input type="number" class="form-control" value="{{$data->phone}}" name="phone" placeholder="Phone Number">				
+                          <input type="number" class="form-control" name="phone" placeholder="Phone Number">				
                         </div>
                       </div>		                  
 
                       <div class="form-group row">
                         <label for="inputEmail3" class="col-sm-3 col-form-label">Email</label>
                         <div class="col-sm-9">
-                          <input type="email" id="email" value="{{$data->email}}" class="form-control" name="email" placeholder="Email">				
+                          <input type="email" id="email" class="form-control" name="email" placeholder="Email">				
                         </div>
                         <div style="margin-left: 200px">
                             <p id="uname_response" ></p>
@@ -79,12 +76,11 @@
                       <div class="form-group row">
                         <label for="inputEmail3" class="col-sm-3 col-form-label">Address</label>
                         <div class="col-sm-9">
-                          <input type="text" value="{{$data->address}}" class="form-control" name="address" placeholder="Address">				
+                          <input type="text" class="form-control" name="address" placeholder="Address">				
                         </div>
                       </div>		                  
-                      <img src="{{$data->image}}" alt="" style="height: 80px; width:120px">
+
                       <div class="form-group row">
-                          
                         <label for="inputEmail3" class="col-sm-3 col-form-label">Image</label>
                         <div class="col-sm-9">
                           <input type="file" class="form-control" name="image" placeholder="Image">				
@@ -93,9 +89,9 @@
                       <div class="form-group row">
                         <label for="inputPassword3" class="col-sm-3 col-form-label">Status</label>
                         <div class="col-sm-9">
-                          <select name="status" id="" class="form-control">
-                              <option value="1" @php if ($data['status'] == 1) { echo "selected"; } @endphp>Active</option>
-                              <option value="0" @php if ($data['status'] == 0) { echo "selected"; } @endphp>Inactive</option>
+                          <select name="status" id="" class="form-control" required>
+                              <option value="1">Active</option>
+                              <option value="0 ">Inactive</option>
                           </select>
                         </div>
                       </div>
@@ -103,25 +99,54 @@
                     <!-- /.card-body -->
                     <div class="card-footer">
                       <button type="submit" class="btn btn-info">Save</button>
+                      <button type="reset" class="btn btn-default">Cancel</button>
                     </div>
                     <!-- /.card-footer -->
                   </form>
-              </div>
-              <!-- /.card -->
+            </div>
+            <!-- /.card -->
 
-          </div>
-          <!--/.col (left) -->
-          <!-- right column -->
-          
-          <!--/.col (right) -->
-      </div>
-      <!-- /.row -->
-  </div><!-- /.container-fluid -->
+            </div>
+		</div>
+	</div>
 </section>
-<!-- /.content -->
 @endsection
 @section('script')
-@endsection
-        
-        
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script>
+    $(document).ready(function(){
+           $.ajaxSetup({
+               headers: {
+                   'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+               }
+           });
+           token = $( "input[value='_token']" ).val();
+   
+   
+           $('.edit').on('click',function(){
+               var id = $(this).attr("data-id");
+               data = {
+                   "_token": token,
+                   "id":id
+               };
+               $.ajax({
+                   url: "customer/"+id+'/edit',
+                   type: "get",
+                   data:data,
+                   success: function (response) {
+                       // console.log(response);
+                       $('.customer-form').html(response);
+                   },
+                   error: function(jqXHR, textStatus, errorThrown) {
+                       console.log(textStatus, errorThrown);
+                   }
+               });
+           });
+           
+      
        
+   
+   });
+   </script>
+
+@endsection

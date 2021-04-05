@@ -9,10 +9,14 @@
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
 <div class="wrapper">
-
+  @php $logo = App\Models\SiteImage::first() @endphp
   <!-- Preloader -->
   <div class="preloader flex-column justify-content-center align-items-center">
+    @if(!empty($logo->logo))
+    <img class="animation__shake" src="{{$logo->logo ?? ''}}" alt="kidscontrol" height="60" width="60">
+    @else
     <img class="animation__shake" src="{{asset('assets/backend/images/')}}/kidscontrol.jpg" alt="kidscontrol" height="60" width="60">
+    @endif
   </div>
 
   <!-- Navbar -->
@@ -22,8 +26,12 @@
   <!-- Main Sidebar Container -->
   <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
-    <a href="index3.html" class="brand-link">
+    <a href="{{route('dashboard')}}" class="brand-link">
+      @if(!empty($logo->logo))
+      <img src="{{$logo->logo ?? ''}}" alt="kidscontrol" class="brand-image img-circle elevation-3" style="opacity: .8">
+      @else
       <img src="{{asset('assets/backend/images/')}}/kidscontrol.jpg" alt="kidscontrol" class="brand-image img-circle elevation-3" style="opacity: .8">
+      @endif
       <span class="brand-text font-weight-light">Kids Control</span>
     </a>
 
@@ -47,7 +55,7 @@
 
   @yield('content')
   <footer class="main-footer">
-    <strong>Copyright &copy; 2020-2021 <a href="https://adminlte.io">Kids Control</a>.</strong>
+    <strong>Copyright &copy; 2020-2021 <a href="#">Kids Control</a>.</strong>
     All rights reserved.
     <div class="float-right d-none d-sm-inline-block">
       <b>Version</b> 0.0.0
