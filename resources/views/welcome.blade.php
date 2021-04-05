@@ -1,0 +1,1 @@
+<h2 style="text-align: center">Welcome to Kids Control apps</h2>
