@@ -21,6 +21,9 @@ class CreateCustomersTable extends Migration
             $table->string('address')->nullable();
             $table->string('image')->nullable();
             $table->boolean('status')->default(1);
+            $table->string('password');
+            $table->timestamp('last_login')->nullable();
+            $table->string('last_login_ip')->nullable();
             $table->softDeletes();
             $table->timestamps();
         });

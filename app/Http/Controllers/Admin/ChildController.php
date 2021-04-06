@@ -132,4 +132,8 @@ class ChildController extends Controller
             return view('admin.customer.child_profile',compact('main_data'));
         }
     }
+    public function inactive_user(){
+        $customers = Customer::all();
+        return view('admin.setting.inactive_user',compact('customers'));
+    }
 }

@@ -1,6 +1,6 @@
 @extends('admin.layouts.app')
 @section('title')
-    <title>{{ config('app.name') }} | Manage Customer</title>
+    <title>{{ config('app.name') }} | Manage Child</title>
     <meta name="csrf-token" content="{{csrf_token()}}">
 @endsection
 @section('content')
@@ -11,12 +11,12 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1>Manage Customer</h1>
+                        <h1>Manage Child</h1>
                     </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
                             <li class="breadcrumb-item"><a href="#">Home</a></li>
-                            <li class="breadcrumb-item active">Customer </li>
+                            <li class="breadcrumb-item active">Child </li>
                         </ol>
                     </div>
                 </div>
@@ -33,7 +33,7 @@
                         <div class="card card-warning">
                             <div class="card">
                                 <div class="card-header">
-                                    <h3 class="card-title">Manage Customer information</h3>
+                                    <h3 class="card-title">Manage Child information</h3>
                                     <a href="{{route('customer.create')}}" class="btn btn-success" style="float: right"> + Add New </a>
                                 </div>
                                 <!-- /.card-header -->

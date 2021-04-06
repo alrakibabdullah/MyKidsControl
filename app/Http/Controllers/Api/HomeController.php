@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Models\Country;
 use App\Models\Customer;
+use App\Models\SiteImage;
 use App\Models\Website;
 use Illuminate\Http\Request;
 
@@ -29,6 +30,13 @@ class HomeController extends Controller
 
         return response()->json([
             'countries'=>$countries,
+        ]);
+    }
+    public function logo(){
+        $logo = SiteImage::first();
+
+        return response()->json([
+            'logo'=>$logo,
         ]);
     }
 }

@@ -77,6 +77,14 @@
           </p>
         </a>
       </li>
+      <li class="nav-item">
+        <a href="{{route('discount.index')}}" class="nav-link {{ (request()->is('admin/discount')) ? 'active' : '' }}">
+          <i class="nav-icon fas fa-th"></i>
+          <p>
+            Discount
+          </p>
+        </a>
+      </li>
       <li class="nav-item
       {{ request()->is('admin/site-setting') ? 'menu-open' : '' }}
       ">
@@ -100,6 +108,18 @@
         <a href="{{route('change-password')}}" class="nav-link {{ (request()->is('admin/change-password')) ? 'active' : '' }}">
           <i class="nav-icon fas fa-file"></i>
           <p>Change Password</p>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a href="{{route('inactive-user')}}" class="nav-link {{ (request()->is('admin/inactive-user')) ? 'active' : '' }}">
+          <i class="nav-icon fas fa-file"></i>
+          <p>Inactive User</p>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a href="{{route('email-template')}}" class="nav-link {{ (request()->is('admin/email-template')) ? 'active' : '' }}">
+          <i class="nav-icon fas fa-file"></i>
+          <p>Email template</p>
         </a>
       </li>
     </ul>

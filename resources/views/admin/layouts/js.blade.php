@@ -26,6 +26,7 @@
 <script src="{{asset('assets/backend/plugins/')}}/summernote/summernote-bs4.min.js"></script>
 <!-- overlayScrollbars -->
 <script src="{{asset('assets/backend/plugins/')}}/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
+<script src="{{asset('assets/backend/plugins/')}}/select2/js/select2.full.min.js"></script>
 <!-- AdminLTE App -->
 <script src="{{asset('assets/backend/dist/')}}/js/adminlte.js"></script>
 <!-- AdminLTE for demo purposes -->
@@ -33,6 +34,7 @@
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
 <script src="{{asset('assets/backend/dist/')}}/js/pages/dashboard.js"></script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/select2@4.0.12/dist/js/select2.min.js"></script>
 
 <script>
     @if (Session::has('message'))
@@ -72,3 +74,15 @@
     }
     @endif
 </script>
+<script>
+    $(function () {
+      //Initialize Select2 Elements
+      $('.select2').select2()
+  
+      //Initialize Select2 Elements
+      $('.select2bs4').select2({
+        theme: 'bootstrap4'
+      })
+    })
+    
+  </script>

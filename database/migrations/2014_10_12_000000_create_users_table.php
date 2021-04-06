@@ -22,7 +22,7 @@ class CreateUsersTable extends Migration
             $table->string('address')->nullable();
             $table->string('image')->nullable();
             $table->boolean('status')->default(1);
-            $table->string('user_type')->comment('parent or child');
+            $table->string('user_type')->comment('child');
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->rememberToken();

@@ -5,6 +5,8 @@ use App\Http\Controllers\Admin\ChildController;
 use App\Http\Controllers\Admin\CountryController;
 use App\Http\Controllers\Admin\WebsiteController;
 use App\Http\Controllers\Admin\CustomerController;
+use App\Http\Controllers\Admin\DiscountController;
+use App\Http\Controllers\Admin\EmailMarketingController;
 use App\Http\Controllers\Admin\SettingController;
 use Illuminate\Support\Facades\Route;
 
@@ -49,6 +51,13 @@ Route::prefix('admin')->group(function (){
         Route::post('parent-profile', [ChildController::class, 'parent'])->name('parent-profile');
         Route::get('children-list/{id}', [ChildController::class, 'children_list'])->name('children-list');
         Route::post('child-profile', [ChildController::class, 'child'])->name('child-profile');
+        Route::get('inactive-user', [ChildController::class, 'inactive_user'])->name('inactive-user');
+        Route::post('email-marketing', [EmailMarketingController::class, 'email_marketing'])->name('email-marketing');
+        Route::get('email-template', [EmailMarketingController::class, 'email_template'])->name('email-template');
+        Route::post('save.email-details', [EmailMarketingController::class, 'email_details'])->name('save.email-details');
+        //discount
+        Route::resource('discount', DiscountController::class);
+        
         
         //website setting
         Route::get('/site-setting', [SettingController::class, 'setting'])->name('site-setting');

@@ -25,4 +25,8 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::get('/websites', [HomeController::class, 'website']);
 Route::get('/customers', [HomeController::class, 'customers']);
 Route::get('/countries', [HomeController::class, 'countries']);
+Route::get('/logo', [HomeController::class, 'logo']);
+
 Route::post('/user/create', [UserController::class, 'register']);
+Route::post('/parent/login', [UserController::class, 'parent_login']);
+Route::post('/child/login', [UserController::class, 'child_login']);

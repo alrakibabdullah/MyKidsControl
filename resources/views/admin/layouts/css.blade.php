@@ -12,6 +12,7 @@
 <link rel="stylesheet" href="{{asset('assets/backend/plugins/')}}/jqvmap/jqvmap.min.css">
 <!-- Theme style -->
 <link rel="stylesheet" href="{{asset('assets/backend/dist/')}}/css/adminlte.min.css">
+<link rel="stylesheet" href="{{asset('assets/backend/plugins/')}}/select2/css/select2.min.css">
 <!-- overlayScrollbars -->
 <link rel="stylesheet" href="{{asset('assets/backend/plugins/')}}/overlayScrollbars/css/OverlayScrollbars.min.css">
 <!-- Daterange picker -->
@@ -19,3 +20,5 @@
 <!-- summernote -->
 <link rel="stylesheet" href="{{asset('assets/backend/plugins/')}}/summernote/summernote-bs4.min.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css">
+
+<link href="https://cdn.jsdelivr.net/npm/select2@4.0.12/dist/css/select2.min.css" rel="stylesheet" />

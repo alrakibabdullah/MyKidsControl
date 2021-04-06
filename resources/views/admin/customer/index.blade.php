@@ -1,6 +1,6 @@
 @extends('admin.layouts.app')
 @section('title')
-    <title>{{ config('app.name') }}  | Add Customer</title>
+    <title>{{ config('app.name') }}  | Add Parent</title>
     <meta name="csrf-token" content="{{csrf_token()}}">
 @endsection
 @section('content')
@@ -16,7 +16,7 @@
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
                         <li class="breadcrumb-item"><a href="#">Home</a></li>
-                        <li class="breadcrumb-item active">Customer Form</li>
+                        <li class="breadcrumb-item active">Parent Form</li>
                     </ol>
                 </div>
             </div>
@@ -33,7 +33,7 @@
                 <div class="card card-warning">
                     <div class="card">
                         <div class="card-header">
-                            <h3 class="card-title">Manage Customer information</h3>
+                            <h3 class="card-title">Manage Parent information</h3>
                         </div>
                         <!-- /.card-header -->
                         <div class="card-body">
