@@ -85,7 +85,19 @@
                         <div class="col-sm-9">
                           <input type="file" class="form-control" name="image" placeholder="Image">				
                         </div>
-                      </div>		                  		                  
+                      </div>
+                      <div class="form-group row">
+                        <label for="inputEmail3" class="col-sm-3 col-form-label">Password<span style="color: red">*</span></label>
+                        <div class="col-sm-9">
+                          <input type="password" class="form-control" name="password" placeholder="Password">				
+                        </div>
+                      </div>
+                      <div class="form-group row">
+                        <label for="inputEmail3" class="col-sm-3 col-form-label">Confirm Password<span style="color: red">*</span></label>
+                        <div class="col-sm-9">
+                          <input type="password" class="form-control" name="password_confirmation" placeholder="Confirm Password">				
+                        </div>
+                      </div>	                  		                  
                       <div class="form-group row">
                         <label for="inputPassword3" class="col-sm-3 col-form-label">Status</label>
                         <div class="col-sm-9">

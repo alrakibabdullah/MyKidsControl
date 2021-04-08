@@ -54,6 +54,7 @@ Route::prefix('admin')->group(function (){
         Route::get('children-list/{id}', [ChildController::class, 'children_list'])->name('children-list');
         Route::post('child-profile', [ChildController::class, 'child'])->name('child-profile');
         Route::get('inactive-user', [ChildController::class, 'inactive_user'])->name('inactive-user');
+        Route::get('child-schedule/{id}', [ChildController::class, 'child_schedule'])->name('child.schedule');
         Route::post('email-marketing', [EmailMarketingController::class, 'email_marketing'])->name('email-marketing');
         Route::get('email-template', [EmailMarketingController::class, 'email_template'])->name('email-template');
         Route::post('save.email-details', [EmailMarketingController::class, 'email_details'])->name('save.email-details');
@@ -81,5 +82,9 @@ Route::prefix('school')->group(function (){
         Route::get('/payment.history', [SchoolControler::class, 'payment_history'])->name('payment.history');
         //customer
         Route::resource('school-customer', ParentControler::class);
+        //profile
+        Route::get('/profile', [SchoolControler::class, 'profile'])->name('school-profile');
+        Route::post('/save-profile', [SchoolControler::class, 'save_profile'])->name('save.school-profile');
+        
     });
 });

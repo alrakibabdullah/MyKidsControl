@@ -52,6 +52,12 @@
                         <div class="col-sm-9">
                           <input type="text" class="form-control" name="school_name" placeholder="School Name">
                         </div>
+                      </div>
+                      <div class="form-group row">
+                        <label for="inputEmail3" class="col-sm-3 col-form-label">School Code <span style="color: red">*</span> </label>
+                        <div class="col-sm-9">
+                          <input type="text" class="form-control" name="school_code" placeholder="School Code">
+                        </div>
                       </div>		                                   	                  
                       <div class="form-group row">
                         <label for="inputEmail3" class="col-sm-3 col-form-label">Phone Number<span style="color: red">*</span></label>

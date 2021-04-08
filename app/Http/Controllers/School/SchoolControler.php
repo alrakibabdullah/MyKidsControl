@@ -82,4 +82,38 @@ class SchoolControler extends Controller
         $school_payment = SchoolTransaction::where('school_id',Session::get('schoolId'))->get();
         return view('school.report.payment_history',compact('school_payment'));
     }
+    public function profile(){
+        $id = Session::get('schoolId');
+        $user_by_id = School::where('id',$id)->first();
+        return view('school.auth.profile',compact('user_by_id'));
+    }
+    public function save_profile(Request $request){
+        $this->validate($request, [
+            'school_name' => 'required',
+        ]);
+        $id = Session::get('schoolId');
+        $data =School::find($id);
+        $data->school_name = $request->school_name;
+        $data->email = $request->email;
+        $data->phone = $request->phone;
+        $data->address = $request->address;
+        if($request->hasFile('logo')) {
+            $image = $request->logo;
+            $filename = $image->getClientOriginalName();
+            $filename = preg_replace('/\s+/', '-', $filename);
+            $folder = 'uploads/'.date('Y').'/'.date('m');
+            if (!file_exists($folder)) {
+                mkdir($folder, 0777, true);
+            }
+            $user_img = $folder.'/'. time() . '-' . $filename;
+            Image::make($image)->resize(300, 300)->save($user_img);
+            $data->logo = secure_asset($user_img);
+        }
+        $data->save();
+        $notification=array(
+            'message' => 'Successfully Saved',
+            'alert-type' => 'success'
+        );
+        return redirect()->back()->with($notification);
+    }
 }

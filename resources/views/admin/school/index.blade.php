@@ -41,6 +41,8 @@
                                 <tr>
                                     <th>Serial</th>
                                     <th>Name</th>
+                                    <th>Code</th>
+                                    <th>Email</th>
                                     <th>Phone</th>
                                     <th>Status</th>
                                     <th>Action</th>
@@ -52,6 +54,8 @@
                                 <tr>
                                     <td>{{$i}}</td>
                                     <td>{{$item->school_name}}</td>
+                                    <td>{{$item->school_code}}</td>
+                                    <td>{{$item->email ?? ''}}</td>
                                     <td>{{$item->phone}}</td>
                                     <td>@php
                                         if($item->status == 1){

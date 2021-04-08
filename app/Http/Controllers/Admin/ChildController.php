@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Child;
 use App\Models\Customer;
+use App\Models\Schedule;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Image;
@@ -135,5 +136,9 @@ class ChildController extends Controller
     public function inactive_user(){
         $customers = Customer::all();
         return view('admin.setting.inactive_user',compact('customers'));
+    }
+    public function child_schedule($id){
+        $schedule = Schedule::where('user_id',$id)->get();
+        return view('admin.child.schedule',compact('schedule'));
     }
 }

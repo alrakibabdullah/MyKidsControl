@@ -42,6 +42,8 @@ class CustomerController extends Controller
             'name' => 'required|min:3|max:50',
             'email' => 'email',
             'phone' => 'max:15|required|unique:customers,phone',
+            'password' => 'min:6|required_with:password_confirmation|same:password_confirmation',
+            'password_confirmation' => 'min:6'
         ]);   
         $data =new Customer();
         $data->name = $request->name;
@@ -60,6 +62,7 @@ class CustomerController extends Controller
             Image::make($image)->resize(300, 300)->save($user_img);
             $data->image = secure_asset($user_img);
         }
+        $data->password = bcrypt($request->password);
         $data->status = $request->status;
         $data->save();
         $notification=array(

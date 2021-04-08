@@ -45,9 +45,8 @@ class SchoolController extends Controller
             'password' => 'min:6|required_with:password_confirmation|same:password_confirmation',
             'password_confirmation' => 'min:6'
         ]);
-        $code = School::orderBy('id','desc')->withTrashed()->first();
         $data =new School();
-        $data->school_code = 'SC'. str_pad(($code?$code->id:0) + 1, 5, "0", STR_PAD_LEFT); //"F-".str_pad($dbValue, 7, "0", STR_PAD_LEFT);  
+        $data->school_code = $request->school_code;
         $data->school_name = $request->school_name;
         $data->email = $request->email;
         $data->phone = $request->phone;
@@ -112,6 +111,7 @@ class SchoolController extends Controller
         ]);   
         $data =School::find($id);
         $data->school_name = $request->school_name;
+        $data->school_code = $request->school_code;
         $data->email = $request->email;
         $data->phone = $request->phone;
         $data->address = $request->address;

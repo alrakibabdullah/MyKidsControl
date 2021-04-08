@@ -44,6 +44,8 @@
             <div class="pull-left">
               @if(!empty(Session::get('adminName')))
               <a href="{{route('profile')}}" style="float: left;" class="btn btn-default btn-flat">Profile</a>
+              @else
+              <a href="{{route('school-profile')}}" style="float: left;" class="btn btn-default btn-flat">Profile</a>
               @endif
             </div>
             <div class="pull-right">

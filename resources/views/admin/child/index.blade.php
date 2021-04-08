@@ -69,8 +69,8 @@
                                                 <td>
                                                     <a href="{{route('child.edit',$data->id)}}" class="btn btn-info btn-sm"><i class="fa fa-edit"></i></a>
                                                     <a href="#"  style="display: inline;" class="btn btn-success btn-sm" onclick="ViewParentProfile({{$data->id}})"  data-toggle="modal"
-                                                        data-target=".bd-example-modal-lg"><i class="fa fa-eye"></i></a>
-                                                    
+                                                        data-target=".bd-example-modal-lg"><i class="far fa-user-circle"></i></a>
+                                                        <a href="{{route('child.schedule',$data->id)}}" class="btn btn-warning btn-sm"><i class="fas fa-clock"></i></a>
                                                 </td>
                                             </tr>
                                             @php $i++; @endphp
