@@ -69,6 +69,48 @@
           </li>
         </ul>
       </li>
+      <li class="nav-item
+      {{ request()->is('admin/school/create') ? 'menu-open' : '' }}
+      {{ request()->is('admin/school') ? 'menu-open' : '' }}
+      {{ request()->is('admin/payment/create') ? 'menu-open' : '' }}
+      {{ request()->is('admin/payment') ? 'menu-open' : '' }}
+      ">
+        <a href="#" class="nav-link">
+          <i class="nav-icon fas fa-edit"></i>
+          <p>
+            School
+            <i class="fas fa-angle-left right"></i>
+          </p>
+        </a>
+        <ul class="nav nav-treeview">
+          <li class="nav-item">
+            <a href="{{route('school.create')}}" class="nav-link {{ (request()->is('admin/school/create')) ? 'active' : '' }}">
+              <i class="far fa-circle nav-icon"></i>
+              <p>Add</p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="{{route('school.index')}}" class="nav-link {{ (request()->is('admin/school')) ? 'active' : '' }}">
+              <i class="far fa-circle nav-icon"></i>
+              <p>Manage</p>
+            </a>
+          </li>
+        </ul>
+        <ul class="nav nav-treeview">
+          <li class="nav-item">
+            <a href="{{route('payment.create')}}" class="nav-link {{ (request()->is('admin/payment/create')) ? 'active' : '' }}">
+              <i class="far fa-circle nav-icon"></i>
+              <p>Add Payment</p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="{{route('payment.index')}}" class="nav-link {{ (request()->is('admin/payment')) ? 'active' : '' }}">
+              <i class="far fa-circle nav-icon"></i>
+              <p>Manage Payment</p>
+            </a>
+          </li>
+        </ul>
+      </li>
       <li class="nav-item">
         <a href="{{route('website.index')}}" class="nav-link {{ (request()->is('admin/website')) ? 'active' : '' }}">
           <i class="nav-icon fas fa-th"></i>

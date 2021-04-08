@@ -3,6 +3,7 @@
 namespace Database\Factories;
 
 use App\Models\Customer;
+use App\Models\School;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class CustomerFactory extends Factory
@@ -22,6 +23,7 @@ class CustomerFactory extends Factory
     public function definition()
     {
         return [
+            'school_id' => School::all()->random()->id,
             'name' => $this->faker->name,
             'email' => $this->faker->unique()->safeEmail,
             'phone' => $this->faker->e164PhoneNumber,

@@ -7,7 +7,11 @@ use App\Http\Controllers\Admin\WebsiteController;
 use App\Http\Controllers\Admin\CustomerController;
 use App\Http\Controllers\Admin\DiscountController;
 use App\Http\Controllers\Admin\EmailMarketingController;
+use App\Http\Controllers\Admin\SchoolController;
+use App\Http\Controllers\Admin\SchoolPaymentController;
 use App\Http\Controllers\Admin\SettingController;
+use App\Http\Controllers\School\ParentControler;
+use App\Http\Controllers\School\SchoolControler;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -26,10 +30,8 @@ Route::get('/', function () {
 });
 Route::prefix('admin')->group(function (){
     Route::get('/login', [AdminController::class, 'login']);
-    Route::get('/dashboard', [AdminController::class, 'home'])->name('dashboard');
     Route::post('/login', [AdminController::class, 'admin_login'])->name('admin-login');
     Route::get('/logout', [AdminController::class, 'admin_logout'])->name('admin-logout');
-    Route::get('/forget-password', 'AdminController@forget_password')->name('forget-password');
     Route::group(['middleware' => ['AdminUserMiddleWare']], function () {
         Route::get('/dashboard', [AdminController::class, 'home'])->name('dashboard');
         Route::get('/profile', [AdminController::class, 'profile'])->name('profile');
@@ -57,11 +59,27 @@ Route::prefix('admin')->group(function (){
         Route::post('save.email-details', [EmailMarketingController::class, 'email_details'])->name('save.email-details');
         //discount
         Route::resource('discount', DiscountController::class);
-        
+        //school
+        Route::resource('school', SchoolController::class);
+        Route::resource('payment', SchoolPaymentController::class);
         
         //website setting
         Route::get('/site-setting', [SettingController::class, 'setting'])->name('site-setting');
         Route::post('/save-logo', [SettingController::class, 'save_logo'])->name('save-logo');
         Route::post('/save-favicon', [SettingController::class, 'save_favicon'])->name('save-favicon');
+    });
+});
+
+Route::prefix('school')->group(function (){
+    Route::get('/login', [SchoolControler::class, 'login']);
+    Route::post('/login', [SchoolControler::class, 'save_login'])->name('school-login');
+    Route::group(['middleware' => ['SchoolMiddleWare']], function () {
+        Route::get('/logout', [SchoolControler::class, 'logout'])->name('school-logout');
+        Route::get('/dashboard', [SchoolControler::class, 'home'])->name('school-dashboard');
+        Route::get('/change-password', [SchoolControler::class, 'change_password'])->name('school-change-password');
+        Route::post('/save-password', [SchoolControler::class, 'save_password'])->name('school-save-password');
+        Route::get('/payment.history', [SchoolControler::class, 'payment_history'])->name('payment.history');
+        //customer
+        Route::resource('school-customer', ParentControler::class);
     });
 });

@@ -17,8 +17,10 @@ class DatabaseSeeder extends Seeder
         $this->call(AdminTableSeeder::class);
         $this->call(CountryTableSeeder::class);
         $this->call(WebsiteTableSeeder::class);
+        $this->call(SchoolTableSeeder::class);
         $this->call(CustomerTableSeeder::class);
         $this->call(UserTableSeeder::class);
         $this->call(EmailSettingSeeder::class);
+        
     }
 }
