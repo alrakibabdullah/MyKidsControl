@@ -112,10 +112,26 @@
         </ul>
       </li>
       <li class="nav-item">
+        <a href="{{route('category.index')}}" class="nav-link {{ (request()->is('admin/category')) ? 'active' : '' }}">
+          <i class="nav-icon fas fa-th"></i>
+          <p>
+            Category
+          </p>
+        </a>
+      </li>
+      <li class="nav-item">
         <a href="{{route('website.index')}}" class="nav-link {{ (request()->is('admin/website')) ? 'active' : '' }}">
           <i class="nav-icon fas fa-th"></i>
           <p>
             Websites
+          </p>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a href="{{route('apps.index')}}" class="nav-link {{ (request()->is('admin/apps')) ? 'active' : '' }}">
+          <i class="nav-icon fas fa-th"></i>
+          <p>
+            Apps
           </p>
         </a>
       </li>
@@ -162,6 +178,12 @@
         <a href="{{route('email-template')}}" class="nav-link {{ (request()->is('admin/email-template')) ? 'active' : '' }}">
           <i class="nav-icon fas fa-file"></i>
           <p>Email template</p>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a href="{{route('manage-contact')}}" class="nav-link {{ (request()->is('admin/manage-contact')) ? 'active' : '' }}">
+          <i class="nav-icon fas fa-file"></i>
+          <p>Manage Contact</p>
         </a>
       </li>
     </ul>

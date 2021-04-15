@@ -79,6 +79,7 @@ class ChildController extends Controller
         $this->validate($request, [
             'name' => 'required|min:3|max:50',
             'email' => 'email',
+            'phone' => 'required',
         ]);   
         $data =User::find($id);
         $data->name = $request->name;

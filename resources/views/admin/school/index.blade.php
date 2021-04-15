@@ -44,6 +44,7 @@
                                     <th>Code</th>
                                     <th>Email</th>
                                     <th>Phone</th>
+                                    <th>Logo</th>
                                     <th>Status</th>
                                     <th>Action</th>
                                 </tr>
@@ -57,6 +58,7 @@
                                     <td>{{$item->school_code}}</td>
                                     <td>{{$item->email ?? ''}}</td>
                                     <td>{{$item->phone}}</td>
+                                    <td><img src="{{$item->logo}}" alt="" style="width: 80px; height:60px"></td>
                                     <td>@php
                                         if($item->status == 1){
                                         echo  "<div class='badge badge-success badge-shadow'>Active</div>";

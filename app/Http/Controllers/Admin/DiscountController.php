@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Customer;
 use App\Models\Discount;
+use App\Models\School;
 use Illuminate\Http\Request;
 
 class DiscountController extends Controller
@@ -17,8 +18,8 @@ class DiscountController extends Controller
     public function index()
     {
         $discounts = Discount::all();
-        $parents = Customer::where('status',1)->get();
-        return view('admin.discount.index',compact('discounts','parents'));
+        $school = School::where('status',1)->get();
+        return view('admin.discount.index',compact('discounts','school'));
     }
 
     /**
@@ -41,13 +42,15 @@ class DiscountController extends Controller
     {
         $validatedData = $request->validate([
             'title' => 'required',
-            'amount' => 'required',
-            'parent_id' => 'required',
+            'flat_amount' => 'required_without:percent_amount',
+            'percent_amount' => 'required_without:flat_amount',
+            'school_id' => 'required',
         ]);
         $data = new Discount();
-        $data->parent_id=$request->parent_id;
+        $data->school_id=$request->school_id;
         $data->title=$request->title;
-        $data->amount=$request->amount;
+        $data->flat_amount=$request->flat_amount;
+        $data->percent_amount=$request->percent_amount;
         $data->save();
         $notification=array(
             'message' => 'Successfully Done',
@@ -76,8 +79,8 @@ class DiscountController extends Controller
     public function edit($id)
     {
         $data = Discount::find($id);
-        $parents = Customer::where('status',1)->get();
-        return view('admin.discount.edit',compact('data','parents'));
+        $school = School::where('status',1)->get();
+        return view('admin.discount.edit',compact('data','school'));
     }
 
     /**
@@ -91,13 +94,15 @@ class DiscountController extends Controller
     {
         $validatedData = $request->validate([
             'title' => 'required',
-            'amount' => 'required',
-            'parent_id' => 'required',
+            'flat_amount' => 'required_without:percent_amount',
+            'percent_amount' => 'required_without:flat_amount',
+            'school_id' => 'required',
         ]);
         $data = Discount::find($id);
-        $data->parent_id=$request->parent_id;
+        $data->school_id=$request->school_id;
         $data->title=$request->title;
-        $data->amount=$request->amount;
+        $data->flat_amount=$request->flat_amount;
+        $data->percent_amount=$request->percent_amount;
         $data->save();
         $notification=array(
             'message' => 'Successfully Done',

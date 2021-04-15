@@ -44,18 +44,19 @@
                   </div>
                   <!-- /.card-header -->
                   <!-- form start -->
-                  <form class="form-horizontal" action="{{route('payment.store')}}" method="post" enctype="multipart/form-data">
+                  <form class="form-horizontal" action="{{route('payment.preview')}}" method="post" enctype="multipart/form-data">
                       @csrf
                     <div class="card-body">
                       <div class="form-group row">
+                        <label for="inputEmail3" class="col-sm-3 col-form-label">School Code</label>
+                        <div class="col-sm-9">
+                          <input type="text" id="school_code" class="form-control" onchange="SchoolCodeHandler(this.value)" name="school_code" placeholder="Enter School Code" required>				
+                        </div>
+                      </div>
+                      <div class="form-group row">
                         <label for="inputEmail3" class="col-sm-3 col-form-label">School Name <span style="color: red">*</span> </label>
                         <div class="col-sm-9">
-                            <select name="school_id" id="" class="form-control" required>
-                                <option value="" disabled selected>--select--</option>
-                                @foreach ($school as $item)
-                                    <option value="{{$item->id}}">{{$item->school_name}}({{$item->school_code}})</option>
-                                @endforeach
-                            </select>
+                          <input type="text" id="school_name" class="form-control" name="school_name" placeholder="School Name" readonly>
                         </div>
                       </div>		                                   	                  
                       <div class="form-group row">
@@ -69,15 +70,27 @@
                         </div>
                       </div>		                  
                       <div class="form-group row">
-                        <label for="inputEmail3" class="col-sm-3 col-form-label">Amount</label>
+                        <label for="inputEmail3" class="col-sm-3 col-form-label">Flat Amount</label>
                         <div class="col-sm-9">
-                          <input type="number" id="email" class="form-control" name="amount" placeholder="amount">				
+                          <input type="number" id="email" class="form-control" name="flat_amount" placeholder="Flat amount">				
                         </div>
                       </div>
                       <div class="form-group row">
-                        <label for="inputEmail3" class="col-sm-3 col-form-label">Date</label>
+                        <label for="inputEmail3" class="col-sm-3 col-form-label">Percentage Amount(%)</label>
                         <div class="col-sm-9">
-                          <input type="date" id="email" class="form-control" name="date" placeholder="Email">				
+                          <input type="number" id="email" class="form-control" name="percent_amount" placeholder="Percentage amount">				
+                        </div>
+                      </div>
+                      <div class="form-group row">
+                        <label for="inputEmail3" class="col-sm-3 col-form-label">Start Date</label>
+                        <div class="col-sm-9">
+                          <input type="date" id="email" class="form-control" name="start_date" required>				
+                        </div>
+                      </div>
+                      <div class="form-group row">
+                        <label for="inputEmail3" class="col-sm-3 col-form-label">End Date</label>
+                        <div class="col-sm-9">
+                          <input type="date" id="email" class="form-control" name="end_date" required>				
                         </div>
                       </div>
                       <div class="form-group row">
@@ -89,7 +102,7 @@
                     </div>
                     <!-- /.card-body -->
                     <div class="card-footer">
-                      <button type="submit" class="btn btn-info">Save</button>
+                      <button type="submit" class="btn btn-info">Preview</button>
                     </div>
                     <!-- /.card-footer -->
                   </form>
@@ -105,5 +118,69 @@
 @section('script')
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 
+<script>
+  $(document).ready(function(){
+         $.ajaxSetup({
+             headers: {
+                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+             }
+         });
+         token = $( "input[value='_token']" ).val();
+ });
+ </script>
+ {{-- <script>
+  
+  function SchoolCodeHandler(school_code) {
+          
+          var datastr = "school_code=" + school_code  + "&token="+token;
+          // alert(datastr);
+          $.ajax({
+              type: "post",
+              
+              data:datastr,
+              cache:false,
+              success:function (data) {
+                  if(data.school.length !=0) {
+                      $('#school_name').val(data.school.school_name);
+                  }
 
+              },
+              error: function (jqXHR, status, err) {
+                  
+                  console.log(err);
+              },
+              complete: function () {
+                  // alert("Complete");
+              }
+          });
+      }
+</script> --}}
+<script>
+  $( document ).ready(function() {
+      $.ajaxSetup({
+          headers: {
+              'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+          }
+      });
+      token = $( "input[value='_token']" ).val();
+      
+      $("#school_code").keyup(function(){    
+          var school_code = $(this).val().trim();
+          // alert(school_code);
+          if(school_code != ''){    
+              $.ajax({
+url: "{{route('get-school-code-handler-info')}}",
+              type: 'post',
+              data: {school_code: school_code},
+              success: function(data){
+                  console.log(data.data.school_name);
+                  $('#school_name').val(data.data.school_name);
+                  // $('#school_name').html(response);  
+                  }
+              });
+          }    
+      });
+      
+  });    
+</script>
 @endsection

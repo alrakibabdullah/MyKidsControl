@@ -22,10 +22,18 @@
                               </div>
                             <!-- /.card-header -->
                             <!-- form start -->
-                                <form action="{{route('website.update',$data->id)}}" method="post">
+                                <form action="{{route('website.update',$data->id)}}" method="post" enctype="multipart/form-data">
                                     @method('patch')
                                     @csrf
                                 <div class="card-body">
+                                    <div class="form-group">
+                                        <label for="exampleInputEmail1">Category Name<span style="color: red">*</span></label>
+                                        <select name="category_id" id="" class="form-control">
+                                            @foreach ($categories as $item)
+                                                <option value="{{$item->id}}" @php if ($data['category_id'] == $item->id) { echo "selected"; } @endphp>{{$item->title}}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
                                     <div class="form-group">
                                         <label for="exampleInputEmail1">Website Name</label>
                                         <input type="text" name="name" value="{{$data->name}}" class="form-control" id="exampleInputEmail1" placeholder="Website Title">
@@ -33,6 +41,16 @@
                                     <div class="form-group">
                                         <label for="exampleInputEmail1">Website Link</label>
                                         <input type="text" name="link" value="{{$data->link}}" class="form-control" id="exampleInputEmail1" placeholder="Website Link">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="exampleInputEmail1">Website Logo</label>
+                                        @if($data->logo)
+                                            <div class="form-group">
+                                                <img src="{{ asset($data->logo) }}" alt="Image" style="width: 30%; margin-top: 8px">
+                                                <input type="hidden" name="old_image" value="{{ $data->logo }}">
+                                            </div>
+				            	        @endif
+                                        <input type="file" name="logo" class="form-control" id="exampleInputEmail1" placeholder="Website Link">
                                     </div>
                                 </div>
                                 <!-- /.card-body -->

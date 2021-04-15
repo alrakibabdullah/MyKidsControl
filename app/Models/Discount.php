@@ -10,7 +10,7 @@ class Discount extends Model
 {
     use HasFactory,SoftDeletes;
     
-    public function parent(){
-        return $this->belongsTo(Customer::class);
+    public function school(){
+        return $this->belongsTo(School::class);
     }
 }

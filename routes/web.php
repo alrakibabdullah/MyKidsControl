@@ -1,7 +1,10 @@
 <?php
 
 use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\Admin\AppCategoryController;
+use App\Http\Controllers\Admin\AppController;
 use App\Http\Controllers\Admin\ChildController;
+use App\Http\Controllers\Admin\ContactUsController;
 use App\Http\Controllers\Admin\CountryController;
 use App\Http\Controllers\Admin\WebsiteController;
 use App\Http\Controllers\Admin\CustomerController;
@@ -10,8 +13,11 @@ use App\Http\Controllers\Admin\EmailMarketingController;
 use App\Http\Controllers\Admin\SchoolController;
 use App\Http\Controllers\Admin\SchoolPaymentController;
 use App\Http\Controllers\Admin\SettingController;
-use App\Http\Controllers\School\ParentControler;
+use App\Http\Controllers\School\ChildController as SchoolChildController;
+use App\Http\Controllers\School\ParentController;
+use App\Http\Controllers\School\ParentPaymentController;
 use App\Http\Controllers\School\SchoolControler;
+use App\Http\Controllers\School\SchoolController as SchoolSchoolController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -44,6 +50,8 @@ Route::prefix('admin')->group(function (){
         Route::get('/country/inactive/{id}', [CountryController::class, 'inactive'])->name('inactive-country');
         //website
         Route::resource('website', WebsiteController::class);
+        //website
+        Route::resource('apps', AppController::class);
         //customer
         Route::resource('customer', CustomerController::class);
         Route::get('/customer/active/{id}', [CustomerController::class, 'active'])->name('active-customer');
@@ -60,31 +68,49 @@ Route::prefix('admin')->group(function (){
         Route::post('save.email-details', [EmailMarketingController::class, 'email_details'])->name('save.email-details');
         //discount
         Route::resource('discount', DiscountController::class);
+        //category
+        Route::resource('category', AppCategoryController::class);
         //school
         Route::resource('school', SchoolController::class);
         Route::resource('payment', SchoolPaymentController::class);
+        Route::post('payment.preview', [SchoolPaymentController::class, 'payment_preview'])->name('payment.preview');
+        Route::post('get-school-code-handler-info', [SchoolPaymentController::class, 'get_school_code'])->name('get-school-code-handler-info');
         
         //website setting
         Route::get('/site-setting', [SettingController::class, 'setting'])->name('site-setting');
         Route::post('/save-logo', [SettingController::class, 'save_logo'])->name('save-logo');
         Route::post('/save-favicon', [SettingController::class, 'save_favicon'])->name('save-favicon');
+        //contact-us
+        Route::get('/manage-contact', [ContactUsController::class, 'contact'])->name('manage-contact');
+        Route::get('/edit-contact/{id}', [ContactUsController::class, 'edit_contact'])->name('contact.edit');
+        Route::get('/delete-contact/{id}', [ContactUsController::class, 'delete_contact'])->name('contact.delete');
+        Route::post('/delete-update/{id}', [ContactUsController::class, 'update_contact'])->name('contact.update');
     });
 });
 
 Route::prefix('school')->group(function (){
-    Route::get('/login', [SchoolControler::class, 'login']);
-    Route::post('/login', [SchoolControler::class, 'save_login'])->name('school-login');
+    Route::get('/login', [SchoolSchoolController::class, 'login']);
+    Route::post('/login', [SchoolSchoolController::class, 'save_login'])->name('school-login');
     Route::group(['middleware' => ['SchoolMiddleWare']], function () {
-        Route::get('/logout', [SchoolControler::class, 'logout'])->name('school-logout');
-        Route::get('/dashboard', [SchoolControler::class, 'home'])->name('school-dashboard');
-        Route::get('/change-password', [SchoolControler::class, 'change_password'])->name('school-change-password');
-        Route::post('/save-password', [SchoolControler::class, 'save_password'])->name('school-save-password');
-        Route::get('/payment.history', [SchoolControler::class, 'payment_history'])->name('payment.history');
+        Route::get('/logout', [SchoolSchoolController::class, 'logout'])->name('school-logout');
+        Route::get('/dashboard', [SchoolSchoolController::class, 'home'])->name('school-dashboard');
+        Route::get('/change-password', [SchoolSchoolController::class, 'change_password'])->name('school-change-password');
+        Route::post('/save-password', [SchoolSchoolController::class, 'save_password'])->name('school-save-password');
+        Route::get('/payment.history', [SchoolSchoolController::class, 'payment_history'])->name('payment.history');
         //customer
-        Route::resource('school-customer', ParentControler::class);
-        //profile
-        Route::get('/profile', [SchoolControler::class, 'profile'])->name('school-profile');
-        Route::post('/save-profile', [SchoolControler::class, 'save_profile'])->name('save.school-profile');
+        Route::resource('school-customer', ParentController::class);
+        Route::get('children-list/{id}', [ParentController::class, 'children_list'])->name('school-children-list');
+        Route::post('child-profile', [ParentController::class, 'child'])->name('school-child-profile');
         
+        
+        //profile
+        Route::get('/profile', [SchoolSchoolController::class, 'profile'])->name('school-profile');
+        Route::post('/save-profile', [SchoolSchoolController::class, 'save_profile'])->name('save.school-profile');
+        //child
+        Route::resource('school-child', SchoolChildController::class);
+        Route::get('child.schedule/{id}', [SchoolChildController::class, 'child_schedule'])->name('school-child.schedule');
+        Route::post('parent-profile', [SchoolChildController::class, 'parent'])->name('school-parent-profile');
+
+        Route::resource('parent-payment', ParentPaymentController::class);
     });
 });

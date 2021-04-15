@@ -41,8 +41,10 @@
                                 <tr>
                                     <th>Serial</th>
                                     <th>School Name</th>
-                                    <th>Amount</th>
-                                    <th>Date</th>
+                                    <th>School Code</th>
+                                    <th>Flat Amount</th>
+                                    <th>Percent Amount</th>
+                                    <th>End Date</th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -51,8 +53,10 @@
                                 <tr>
                                     <td>{{$i}}</td>
                                     <td>{{$item->school->school_name ?? ''}}</td>
-                                    <td>{{$item->debit}}</td>
-                                    <td>{{$item->date}}</td>
+                                    <td>{{$item->school_code ?? ''}}</td>
+                                    <td>{{$item->flat_amount}}</td>
+                                    <td>{{$item->percent_amount}}</td>
+                                    <td>{{$item->end_date}}</td>
                                     
                                     {{-- <td>
                                         <a href="{{route('school.edit',$item->id)}}" class="btn btn-info btn-sm"><i class="fa fa-edit"></i></a>

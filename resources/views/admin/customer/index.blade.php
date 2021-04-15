@@ -11,7 +11,7 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>User Form</h1>
+                    <h1>Manage Parent</h1>
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
@@ -43,6 +43,7 @@
                                     <th>Serial</th>
                                     <th>Name</th>
                                     <th>Phone</th>
+                                    <th>Image</th>
                                     <th>Status</th>
                                     <th>Action</th>
                                 </tr>
@@ -54,6 +55,7 @@
                                     <td>{{$i}}</td>
                                     <td>{{$item->name}}</td>
                                     <td>{{$item->phone}}</td>
+                                    <td><img src="{{$item->image}}" alt="" style="width: 80px; height:60px"></td>
                                     <td>@php
                                         if($item->status == 1){
                                         echo  "<div class='badge badge-success badge-shadow'>Unblock</div>";
@@ -76,6 +78,11 @@
 
                                         <a href="{{route('customer.edit',$item->id)}}" class="btn btn-info btn-sm"><i class="fa fa-edit"></i></a>
                                         <a href="{{route('children-list',$item->id)}}" class="btn btn-info btn-sm"><i class="fas fa-user-alt"></i></a>
+                                        <form action="{{route('customer.destroy',[$item->id])}}" method="post">
+                                            @method('DELETE')
+                                            @csrf
+                                            <button type="submit" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></button>
+                                          </form>
                                         {{-- <a href="#"  style="display: inline;" class="btn btn-success btn-sm" onclick="ViewParentProfile({{$item->id}})"  data-toggle="modal"
                                             data-target=".bd-example-modal-lg" title="Children List"><i class="fas fa-user-alt"></i></a> --}}
                                     </td>

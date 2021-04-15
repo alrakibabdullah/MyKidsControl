@@ -59,7 +59,7 @@
 		                  <div class="form-group row">
 		                    <label for="inputEmail3" class="col-sm-3 col-form-label">Phone Number</label>
 		                    <div class="col-sm-9">
-		                      <input type="number" class="form-control" value="{{$data->phone}}" name="phone" placeholder="Phone Number">				
+		                      <input type="text" class="form-control" value="{{$data->phone}}" name="phone" placeholder="Phone Number">				
 		                    </div>
 		                  </div>		                  
 

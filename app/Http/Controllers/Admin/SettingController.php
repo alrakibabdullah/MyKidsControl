@@ -27,7 +27,7 @@ class SettingController extends Controller
                 }
                 $logo_img = $folder.'/'. time() . '-' . $filename;
                 Image::make($image)->save($logo_img);
-                $data->logo = secure_asset($logo_img);
+                $data->logo = asset($logo_img);
             }
             $data->save();
         }else{
@@ -42,7 +42,7 @@ class SettingController extends Controller
                 }
                 $logo_img = $folder.'/'. time() . '-' . $filename;
                 Image::make($image)->save($logo_img);
-                $data->logo = secure_asset($logo_img);
+                $data->logo = asset($logo_img);
             }
             $data->save();
         }
@@ -67,7 +67,7 @@ class SettingController extends Controller
                 }
                 $fav_icon = $folder.'/'. time() . '-' . $filename;
                 Image::make($image)->resize(32, 32)->save($fav_icon);
-                $fav_data->favicon = secure_asset($fav_icon);
+                $fav_data->favicon = asset($fav_icon);
             }
             $fav_data->save();
         }else{
@@ -82,7 +82,7 @@ class SettingController extends Controller
                 }
                 $fav_icon = $folder.'/'. time() . '-' . $filename;
                 Image::make($image)->resize(32, 32)->save($fav_icon);
-                $fav_data->favicon = secure_asset($fav_icon);
+                $fav_data->favicon = asset($fav_icon);
             }
             $fav_data->save();
         }

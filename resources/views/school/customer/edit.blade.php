@@ -53,10 +53,15 @@
                       <div class="form-group row">
                         <label for="inputEmail3" class="col-sm-3 col-form-label">Name</label>
                         <div class="col-sm-9">
-                          <input type="text" class="form-control" value="{{$data->name}}" name="name" placeholder="First Name">
+                          <input type="text" class="form-control" value="{{$data->name}}" name="name" placeholder="Name">
                         </div>
                       </div>		                  
-                                                                      
+                      <div class="form-group row">
+                        <label for="inputEmail3" class="col-sm-3 col-form-label">Code</label>
+                        <div class="col-sm-9">
+                          <input type="text" class="form-control" value="{{$data->code}}" name="code" placeholder="Code">
+                        </div>
+                      </div>                                                
                       <div class="form-group row">
                         <label for="inputEmail3" class="col-sm-3 col-form-label">Phone Number</label>
                         <div class="col-sm-9">
@@ -69,13 +74,7 @@
                         <div class="col-sm-9">
                           <input type="email" id="email" value="{{$data->email}}" class="form-control" name="email" placeholder="Email">				
                         </div>
-                        <div style="margin-left: 200px">
-                            <p id="uname_response" ></p>
-                        </div>
-                        
                       </div>
-                                                
-
                       <div class="form-group row">
                         <label for="inputEmail3" class="col-sm-3 col-form-label">Address</label>
                         <div class="col-sm-9">

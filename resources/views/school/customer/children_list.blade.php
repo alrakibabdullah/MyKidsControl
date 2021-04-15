@@ -1,4 +1,4 @@
-@extends('admin.layouts.app')
+@extends('school.layouts.app')
 @section('title')
     <title>{{ config('app.name') }} | Manage Child</title>
     <meta name="csrf-token" content="{{csrf_token()}}">
@@ -66,7 +66,7 @@
                                             @endphp
                                                 </td>
                                                 <td>
-                                                    <a href="{{route('child.edit',$data->id)}}" class="btn btn-info btn-sm"><i class="fa fa-edit"></i></a>
+                                                    
                                                     <a href="#"  style="display: inline;" class="btn btn-success btn-sm" onclick="ViewChildProfile({{$data->id}})"  data-toggle="modal"
                                                         data-target=".bd-example-modal-lg"><i class="fa fa-eye"></i></a>
                                                     
@@ -130,7 +130,7 @@
             var datastr = "id=" + id + "&token=" + token;
             $.ajax({
                 type: "POST",
-                url: "<?php echo route('child-profile'); ?>",
+                url: "<?php echo route('school-child-profile'); ?>",
                 data: datastr,
                 cache: false,
                 success: function(data) {

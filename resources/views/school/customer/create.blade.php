@@ -50,10 +50,15 @@
                       <div class="form-group row">
                         <label for="inputEmail3" class="col-sm-3 col-form-label">Name <span style="color: red">*</span> </label>
                         <div class="col-sm-9">
-                          <input type="text" class="form-control" name="name" placeholder="First Name">
+                          <input type="text" class="form-control" name="name" placeholder="Name">
                         </div>
                       </div>		                  
-                      		                  	                  
+                      <div class="form-group row">
+                        <label for="inputEmail3" class="col-sm-3 col-form-label">Code <span style="color: red">*</span> </label>
+                        <div class="col-sm-9">
+                          <input type="text" class="form-control" name="code" placeholder="Code">
+                        </div>
+                      </div>		                  	                  
                       <div class="form-group row">
                         <label for="inputEmail3" class="col-sm-3 col-form-label">Phone Number<span style="color: red">*</span></label>
                         <div class="col-sm-9">
@@ -109,7 +114,6 @@
                     <!-- /.card-body -->
                     <div class="card-footer">
                       <button type="submit" class="btn btn-info">Save</button>
-                      <button type="reset" class="btn btn-default">Cancel</button>
                     </div>
                     <!-- /.card-footer -->
                   </form>

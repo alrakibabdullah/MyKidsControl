@@ -4,11 +4,12 @@ namespace App\Http\Controllers\School;
 
 use App\Http\Controllers\Controller;
 use App\Models\Customer;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Image;
 use Session;
 
-class ParentControler extends Controller
+class ParentController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -50,6 +51,7 @@ class ParentControler extends Controller
         $data =new Customer();
         $data->school_id = Session::get('schoolId');
         $data->name = $request->name;
+        $data->code = $request->code;
         $data->email = $request->email;
         $data->phone = $request->phone;
         $data->address = $request->address;
@@ -113,6 +115,7 @@ class ParentControler extends Controller
         ]);   
         $data =Customer::find($id);
         $data->name = $request->name;
+        $data->code = $request->code;
         $data->email = $request->email;
         $data->phone = $request->phone;
         $data->address = $request->address;
@@ -146,5 +149,15 @@ class ParentControler extends Controller
     public function destroy($id)
     {
         //
+    }
+    public function children_list($id){
+        $child_list = User::where('parent_id',$id)->get();
+        return view('school.customer.children_list',compact('child_list'));
+    }
+    public function child(Request $request){
+        if($request->ajax()){
+            $main_data = User::find($request->id);
+            return view('admin.customer.child_profile',compact('main_data'));
+        }
     }
 }

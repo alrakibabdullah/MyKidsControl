@@ -49,21 +49,25 @@
                             @csrf
                             <div class="card-body">
                                 <div class="form-group">
-                                    <label for="exampleInputEmail1">Parent Name<span style="color: red">*</span></label>
-                                    <select name="parent_id" id="" class="form-control" required>
+                                    <label for="exampleInputEmail1">School Name<span style="color: red">*</span></label>
+                                    <select name="school_id" id="" class="form-control" required>
                                         <option value="" selected disabled>--select--</option>
-                                        @foreach ($parents as $item)
-                                            <option value="{{$item->id}}">{{$item->name}}</option>
+                                        @foreach ($school as $item)
+                                            <option value="{{$item->id}}">{{$item->school_name}}</option>
                                         @endforeach
                                     </select>
                                 </div>
                                 <div class="form-group">
-                                    <label for="exampleInputEmail1">Discount Title<span style="color: red">*</span></label>
-                                    <input type="text" name="title" class="form-control" id="exampleInputEmail1" placeholder="Discount Title">
+                                    <label for="title">Discount Title<span style="color: red">*</span></label>
+                                    <input type="text" name="title" class="form-control" id="title" placeholder="Discount Title">
                                 </div>
                                 <div class="form-group">
-                                    <label for="exampleInputEmail1">Discount Amount<span style="color: red">*</span></label>
-                                    <input type="number" name="amount" class="form-control" id="exampleInputEmail1" placeholder="Discount Amount">
+                                    <label for="flat_amount">Flat Amount</label>
+                                    <input type="number" name="flat_amount" class="form-control" id="flat_amount" placeholder="Discount Amount">
+                                </div>
+                                <div class="form-group">
+                                    <label for="percent_amount">Percent Amount(%)</label>
+                                    <input type="number" name="percent_amount" class="form-control" id="percent_amount" placeholder="Discount Amount">
                                 </div>
                             </div>
                             <!-- /.card-body -->
@@ -83,7 +87,7 @@
                     <div class="card card-warning">
                         <div class="card">
                             <div class="card-header">
-                                <h3 class="card-title">Manage Website information</h3>
+                                <h3 class="card-title">Manage Discount information</h3>
                             </div>
                             <!-- /.card-header -->
                             <div class="card-body">
@@ -91,9 +95,10 @@
                                     <thead>
                                     <tr>
                                         <th>Serial</th>
-                                        <th>Parent Name</th>
+                                        <th>School Name</th>
                                         <th>title</th>
-                                        <th>Amount</th>
+                                        <th>Flat Amount</th>
+                                        <th>Percent Amount</th>
                                         <th>Action</th>
                                     </tr>
                                     </thead>
@@ -103,9 +108,10 @@
                                     <tr>
                                         <td>{{$i}}</td>
                                         parent
-                                        <td>{{$item->parent->name ?? ''}}</td>
+                                        <td>{{$item->school->school_name ?? ''}}</td>
                                         <td>{{$item->title}}</td>
-                                        <td>{{$item->amount}}</td>
+                                        <td>{{$item->flat_amount}}</td>
+                                        <td>{{$item->percent_amount}}</td>
                                         <td>
                                             <button data-id="{{$item->id}}" class="btn btn-primary edit" >
                                                 <span class="fa fa-edit"></span>

@@ -142,7 +142,13 @@ class CustomerController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $data = Customer::find($id);
+        $data->delete();
+        $notification=array(
+            'message' => 'Successfully Delete',
+            'alert-type' => 'danger'
+        );
+        return redirect()->back()->with($notification);
     }
     public function active($id){
         $data = Customer::find($id);

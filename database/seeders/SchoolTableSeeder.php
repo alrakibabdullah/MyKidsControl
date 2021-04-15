@@ -20,7 +20,7 @@ class SchoolTableSeeder extends Seeder
             'email'=>'school@gmail.com',
             'phone'=>'01916962118',
             'password' => bcrypt('123123123'),
-            'logo'=>'http://via.placeholder.com/37x37?text=Admin Image-37x37',
+            'logo'=>'http://via.placeholder.com/300x300?text=logo Image-300x300',
             'status'=>1
         ]);
         School::create([
@@ -29,7 +29,7 @@ class SchoolTableSeeder extends Seeder
             'email'=>'ideal@gmail.com',
             'phone'=>'01916962119',
             'password' => bcrypt('123123123'),
-            'logo'=>'http://via.placeholder.com/37x37?text=Admin Image-37x37',
+            'logo'=>'http://via.placeholder.com/300x300?text=logo Image-300x300',
             'status'=>1
         ]);
     }

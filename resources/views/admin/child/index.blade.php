@@ -34,7 +34,7 @@
                             <div class="card">
                                 <div class="card-header">
                                     <h3 class="card-title">Manage Child information</h3>
-                                    <a href="{{route('customer.create')}}" class="btn btn-success" style="float: right"> + Add New </a>
+                                    <a href="{{route('child.index')}}" class="btn btn-success" style="float: right"> Refresh </a>
                                 </div>
                                 <!-- /.card-header -->
                                 <div class="card-body">
@@ -45,6 +45,7 @@
                                             <th>Name</th>
                                             <th>Phone</th>
                                             <th>Email</th>
+                                            <th>Child</th>
                                             <th>Status</th>
                                         <th>Action</th>
                                         </tr>
@@ -57,6 +58,7 @@
                                                 <td>{{$data->name}}</td>
                                                 <td>{{$data->phone}}</td>
                                                 <td>{{$data->email}}</td>
+                                                <td><img src="{{$data->image}}" alt="" style="width: 80px; height:60px"></td>
                                                 <td>
                                                     @php
                                             if($data->status == 1){

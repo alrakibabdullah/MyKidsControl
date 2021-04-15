@@ -16,14 +16,14 @@ class CreateSchoolTransactionsTable extends Migration
         Schema::create('school_transactions', function (Blueprint $table) {
             $table->id();
             $table->bigInteger('school_id');
+            $table->string('school_code');
             $table->string('payment_method')->nullable();
-            $table->string('date')->nullable();
+            $table->string('start_date')->nullable();
+            $table->string('end_date')->nullable();
             $table->string('type')->nullable();
             $table->string('note')->nullable();
-            $table->float('old_balance',20,3)->default(0);
-            $table->float('debit',20,3)->default(0);
-            $table->float('credit',20,3)->default(0);
-            $table->float('balance',20,3)->default(0);
+            $table->float('flat_amount',10,2)->default(0)->nullable();
+            $table->float('percent_amount',10,2)->default(0)->nullable();
             $table->string('admin_id')->nullable();
             $table->timestamps();
         });

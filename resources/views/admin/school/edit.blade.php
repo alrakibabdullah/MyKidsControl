@@ -57,7 +57,7 @@
                       <div class="form-group row">
                         <label for="inputEmail3" class="col-sm-3 col-form-label">School Code <span style="color: red">*</span> </label>
                         <div class="col-sm-9">
-                          <input type="text" class="form-control" name="school_code" value="{{$data->school_code}}" placeholder="School Code">
+                          <input type="text" class="form-control" name="school_code" value="{{$data->school_code}}" placeholder="School Code" readonly>
                         </div>
                       </div>	                                   	                  
                       <div class="form-group row">

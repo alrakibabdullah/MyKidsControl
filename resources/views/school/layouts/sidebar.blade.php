@@ -10,9 +10,11 @@
           </p>
         </a>
       </li>
-      <li class="nav-item
+      {{-- <li class="nav-item
       {{ request()->is('school/school-customer/create') ? 'menu-open' : '' }}
       {{ request()->is('school/school-customer') ? 'menu-open' : '' }}
+      {{ request()->is('school/parent-payment/create') ? 'menu-open' : '' }}
+      {{ request()->is('school/parent-payment') ? 'menu-open' : '' }}
       ">
         <a href="#" class="nav-link">
           <i class="nav-icon fas fa-edit"></i>
@@ -34,11 +36,41 @@
               <p>Manage</p>
             </a>
           </li>
+          <li class="nav-item">
+            <a href="{{route('parent-payment.create')}}" class="nav-link {{ (request()->is('school/parent-payment/create')) ? 'active' : '' }}">
+              <i class="far fa-circle nav-icon"></i>
+              <p>Add Payment</p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="{{route('parent-payment.index')}}" class="nav-link {{ (request()->is('school/parent-payment')) ? 'active' : '' }}">
+              <i class="far fa-circle nav-icon"></i>
+              <p>Manage Payment</p>
+            </a>
+          </li>
         </ul>
-      </li>
-      
+      </li> --}}
+      {{-- <li class="nav-item
+      {{ request()->is('school/school-child') ? 'menu-open' : '' }}
+      ">
+        <a href="#" class="nav-link">
+          <i class="nav-icon fas fa-edit"></i>
+          <p>
+            Child
+            <i class="fas fa-angle-left right"></i>
+          </p>
+        </a>
+        <ul class="nav nav-treeview">
+          <li class="nav-item">
+            <a href="{{route('school-child.index')}}" class="nav-link {{ (request()->is('school/school-child')) ? 'active' : '' }}">
+              <i class="far fa-circle nav-icon"></i>
+              <p>Manage</p>
+            </a>
+          </li>
+        </ul>
+      </li> --}}
       <li class="nav-item">
-        <a href="{{route('school-change-password')}}" class="nav-link {{ (request()->is('school/change-password')) ? 'active' : '' }}">
+        <a href="{{route('school-change-password')}}" class="nav-link {{ (request()->is('school/school-change-password')) ? 'active' : '' }}">
           <i class="nav-icon fas fa-file"></i>
           <p>Change Password</p>
         </a>

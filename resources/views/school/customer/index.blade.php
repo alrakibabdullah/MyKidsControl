@@ -11,7 +11,7 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>User Form</h1>
+                    <h1>Parent Form</h1>
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
@@ -42,6 +42,7 @@
                                 <tr>
                                     <th>Serial</th>
                                     <th>Name</th>
+                                    <th>Code</th>
                                     <th>Phone</th>
                                     <th>Status</th>
                                     <th>Action</th>
@@ -53,6 +54,7 @@
                                 <tr>
                                     <td>{{$i}}</td>
                                     <td>{{$item->name}}</td>
+                                    <td>{{$item->code ?? ''}}</td>
                                     <td>{{$item->phone}}</td>
                                     <td>@php
                                         if($item->status == 1){
@@ -64,7 +66,7 @@
                                     </td>
                                     <td>
                                         <a href="{{route('school-customer.edit',$item->id)}}" class="btn btn-info btn-sm"><i class="fa fa-edit"></i></a>
-                                        {{-- <a href="{{route('children-list',$item->id)}}" class="btn btn-info btn-sm"><i class="fas fa-user-alt"></i></a> --}}
+                                        <a href="{{route('school-children-list',$item->id)}}" class="btn btn-info btn-sm"><i class="fas fa-user-alt"></i></a>
                                         {{-- <a href="#"  style="display: inline;" class="btn btn-success btn-sm" onclick="ViewParentProfile({{$item->id}})"  data-toggle="modal"
                                             data-target=".bd-example-modal-lg" title="Children List"><i class="fas fa-user-alt"></i></a> --}}
                                     </td>

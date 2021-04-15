@@ -1,6 +1,6 @@
 @extends('admin.layouts.app')
 @section('title')
-    <title>{{ config('app.name') }}  | Add Parent</title>
+    <title>{{ config('app.name') }}  |  Parent</title>
     <meta name="csrf-token" content="{{csrf_token()}}">
 @endsection
 @section('content')

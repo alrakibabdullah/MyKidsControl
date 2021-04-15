@@ -17,7 +17,8 @@ class CreateCustomersTable extends Migration
             $table->id();
             $table->unsignedBigInteger('school_id')->index()->nullable();
             $table->string('name')->index();
-            $table->string('phone')->unique();
+            $table->string('code')->index()->nullable();
+            $table->string('phone');
             $table->string('email')->nullable();
             $table->string('address')->nullable();
             $table->string('image')->nullable();

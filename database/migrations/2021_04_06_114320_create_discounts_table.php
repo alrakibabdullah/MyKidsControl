@@ -15,9 +15,10 @@ class CreateDiscountsTable extends Migration
     {
         Schema::create('discounts', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger('parent_id');
+            $table->bigInteger('school_id');
             $table->string('title');
-            $table->float('amount',10,2)->default(0);
+            $table->float('flat_amount',10,2)->default(0);
+            $table->float('percent_amount',10,2)->default(0);
             $table->softDeletes();
             $table->timestamps();
         });

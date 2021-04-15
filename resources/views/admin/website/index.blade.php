@@ -45,9 +45,18 @@
                         </div>
                         <!-- /.card-header -->
                         <!-- form start -->
-                        <form role="form" action="{{route('website.store')}}" method="post">
+                        <form role="form" action="{{route('website.store')}}" method="post" enctype="multipart/form-data">
                             @csrf
                             <div class="card-body">
+                                <div class="form-group">
+                                    <label for="exampleInputEmail1">Category Name<span style="color: red">*</span></label>
+                                    <select name="category_id" id="" class="form-control" required>
+                                        <option value="" disabled selected>--select--</option>
+                                        @foreach ($categories as $item)
+                                            <option value="{{$item->id}}">{{$item->title}}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">Website Name<span style="color: red">*</span></label>
                                     <input type="text" name="name" class="form-control" id="exampleInputEmail1" placeholder="Website Name">
@@ -55,6 +64,10 @@
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">Website Link<span style="color: red">*</span></label>
                                     <input type="text" name="link" class="form-control" id="exampleInputEmail1" placeholder="Website Link">
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleInputEmail1">Website Logo</label>
+                                    <input type="file" name="logo" class="form-control" id="exampleInputEmail1" placeholder="Website Link">
                                 </div>
                             </div>
                             <!-- /.card-body -->

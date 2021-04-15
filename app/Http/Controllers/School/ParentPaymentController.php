@@ -3,9 +3,11 @@
 namespace App\Http\Controllers\School;
 
 use App\Http\Controllers\Controller;
+use App\Models\Customer;
+use App\Models\ParentTransaction;
 use Illuminate\Http\Request;
 
-class ChildControler extends Controller
+class ParentPaymentController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,7 +16,8 @@ class ChildControler extends Controller
      */
     public function index()
     {
-        //
+        $parent_payment = ParentTransaction::get();
+        return view('school.customer.payment.index',compact('parent_payment'));
     }
 
     /**
@@ -24,7 +27,8 @@ class ChildControler extends Controller
      */
     public function create()
     {
-        //
+        $parents = Customer::where('status',1)->get();
+        return view('school.customer.payment.create',compact('parents'));
     }
 
     /**
@@ -35,7 +39,27 @@ class ChildControler extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'parent_id' => 'required',
+            'payment_method' => 'required',
+            'date' => 'required',
+            'amount' => 'required',
+        ]);
+        $transaction =new ParentTransaction ();
+        $transaction->parent_id = $request->parent_id;
+        $transaction->payment_method = $request->payment_method;
+        $transaction->date = $request->date;
+        $transaction->old_balance = 0;
+        $transaction->credit =$request->amount;
+        $transaction->debit =0;
+        $transaction->note = $request->note;
+        $transaction->balance =0;
+        $transaction->save();
+        $notification=array(
+            'message' => 'Successfully Saved',
+            'alert-type' => 'success'
+        );
+        return redirect()->back()->with($notification);
     }
 
     /**

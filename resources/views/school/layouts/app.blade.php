@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Kids Control | Dashboard</title>
+  <title>My Kid Control | Dashboard</title>
   @yield('title')
   @include('admin.layouts.css')
 </head>
@@ -32,7 +32,7 @@
       @else
       <img src="{{asset('assets/backend/images/')}}/kidscontrol.jpg" alt="kidscontrol" class="brand-image img-circle elevation-3" style="opacity: .8">
       @endif
-      <span class="brand-text font-weight-light">Kids Control</span>
+      <span class="brand-text font-weight-light">My Kid Control</span>
     </a>
 
     <!-- Sidebar -->

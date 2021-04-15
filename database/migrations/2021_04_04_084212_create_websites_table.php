@@ -15,8 +15,10 @@ class CreateWebsitesTable extends Migration
     {
         Schema::create('websites', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('category_id');
             $table->string('name')->index();
             $table->string('link')->nullable();
+            $table->string('logo')->nullable();
             $table->softDeletes();
             $table->timestamps();
         });

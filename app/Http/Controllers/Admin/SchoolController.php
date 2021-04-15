@@ -16,6 +16,7 @@ class SchoolController extends Controller
      */
     public function index()
     {
+        
         $school =  School::get();
         return view('admin.school.index',compact('school'));
     }
@@ -27,7 +28,9 @@ class SchoolController extends Controller
      */
     public function create()
     {
-        return view('admin.school.create');
+        $memo_no = School::orderBy('id','desc')->withTrashed()->first();
+        $school_code = 'SC'. str_pad(($memo_no?$memo_no->id:0) + 1, 6, "0", STR_PAD_LEFT); //"F-".str_pad($dbValue, 7, "0", STR_PAD_LEFT);
+        return view('admin.school.create',compact('school_code'));
     }
 
     /**
@@ -45,8 +48,9 @@ class SchoolController extends Controller
             'password' => 'min:6|required_with:password_confirmation|same:password_confirmation',
             'password_confirmation' => 'min:6'
         ]);
+        $memo_no = School::orderBy('id','desc')->withTrashed()->first();
         $data =new School();
-        $data->school_code = $request->school_code;
+        $data->school_code = 'SC'. str_pad(($memo_no?$memo_no->id:0) + 1, 6, "0", STR_PAD_LEFT); //"F-".str_pad($dbValue, 7, "0", STR_PAD_LEFT);
         $data->school_name = $request->school_name;
         $data->email = $request->email;
         $data->phone = $request->phone;
@@ -109,9 +113,9 @@ class SchoolController extends Controller
             'school_name' => 'required',
             'email' => 'email',
         ]);   
+
         $data =School::find($id);
         $data->school_name = $request->school_name;
-        $data->school_code = $request->school_code;
         $data->email = $request->email;
         $data->phone = $request->phone;
         $data->address = $request->address;
